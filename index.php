@@ -32,7 +32,6 @@ if ( isset($_POST['submit'] ))
                 $html = '';
                 $ismultipleof3 = $ismultipleof5 = false;
                 $pass = 0;
-                $c = 1;
                 for( $n = $intval1; $n <= $intval2; $n++ ) {
                     if ( $n % 3 === 0 ) {
                         $ismultipleof3 = true;
@@ -53,18 +52,16 @@ if ( isset($_POST['submit'] ))
                         if ($pass >= 2) {
                             $html .= ' Bazz ';
                         } else {
-                            $html .= " ".$pass."-".$n." ";
+                            $html .= " ".$n." ";
                         }
-                    }
-                    $c++;
-                    $ismultipleof3 = $ismultipleof5 = false;
-                    if ( $c % 2 === 0 ) {
                         $pass = 0;
                     }
+                    $ismultipleof3 = $ismultipleof5 = false;
                 }
                 // show result
                 echo "<p><strong>Result for the range[".$intval1."...".$intval2."]</strong>:</p>";
                 echo "<p>".$html."</p>";
+                echo "<hr/>";
             } else {
                 $mssg = '<p class="error">The last integer in the range should be higher than the first value.</p>';
             }
@@ -93,6 +90,7 @@ if ( isset($_POST['submit'] ))
 <?php 
     echo $mssg;
 ?>
+<h1>Case #1.2</h1>
 <form action="<?php echo $PHP_SELF;?>" method="POST">
     <table width="100%">
         <tr>
