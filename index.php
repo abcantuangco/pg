@@ -31,6 +31,8 @@ if ( isset($_POST['submit'] ))
             if ( $intval2 > $intval1 ) {
                 $html = '';
                 $ismultipleof3 = $ismultipleof5 = false;
+                $pass = 0;
+                $c = 1;
                 for( $n = $intval1; $n <= $intval2; $n++ ) {
                     if ( $n % 3 === 0 ) {
                         $ismultipleof3 = true;
@@ -40,14 +42,25 @@ if ( isset($_POST['submit'] ))
                     }
                     if  ($ismultipleof3 && $ismultipleof5) {
                         $html .= ' FizzBuzz ';
+                        $pass++;
                     } elseif ($ismultipleof3 && !$ismultipleof5) {
                         $html.= ' Fizz ';
+                        $pass++;
                     } elseif (!$ismultipleof3 && $ismultipleof5) { 
                         $html .= ' Buzz ';
+                        $pass++;
                     } else {
-                        $html .= " ".$n." ";
+                        if ($pass >= 2) {
+                            $html .= ' Bazz ';
+                        } else {
+                            $html .= " ".$pass."-".$n." ";
+                        }
                     }
+                    $c++;
                     $ismultipleof3 = $ismultipleof5 = false;
+                    if ( $c % 2 === 0 ) {
+                        $pass = 0;
+                    }
                 }
                 // show result
                 echo "<p><strong>Result for the range[".$intval1."...".$intval2."]</strong>:</p>";
