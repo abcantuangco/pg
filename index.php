@@ -1,24 +1,4 @@
 <?php
-// Function to check the multiple
-function checkMultiple($int) 
-{
-    $ismultipleof3 = $ismultipleof5 = false;
-    $result = '';
-    if ( $int % 3 === 0 ) {
-        $result .= 'Fizz';
-        $ismultipleof3 = true;
-    } elseif ( $int % 5 === 0 ) {
-        $result .= 'Buzz';
-        $ismultipleof5 = true;
-    } elseif  ($ismultipleof3 && $ismultipleof5) {
-        $result .= 'FizzBuzz';
-        $ismultipleof3 = $ismultipleof5 = false;
-    } else {
-        $result .= " ".$int." ";
-    }
-    return $result;
-}
-
 // Form Processor
 if ( isset($_POST['submit'] )) 
 {
