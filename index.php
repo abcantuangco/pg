@@ -8,36 +8,40 @@ if ( isset($_POST['submit'] ))
     if ( $intval1 && $intval2 )
     {
         if ( ($intval1 > 0 ) && ( $intval2 > 0 ) ) {
-            if ( $intval2 > $intval1 ) {
-                $html = '';
-                $ismultipleof3 = $ismultipleof5 = false;
-                for( $n = $intval1; $n <= $intval2; $n++ ) {
-                    if ( $n % 3 === 0 ) {
-                        $ismultipleof3 = true;
-                    }
-                    if ( $n % 5 === 0 ) {
-                        $ismultipleof5 = true;
-                    }
-                    if  ($ismultipleof3 && $ismultipleof5) {
-                        $html .= ' FizzBuzz ';
-                    } elseif ($ismultipleof3 && !$ismultipleof5) {
-                        $html.= ' Fizz ';
-                    } elseif (!$ismultipleof3 && $ismultipleof5) { 
-                        $html .= ' Buzz ';
-                    } else {
-                        $html .= " ".$n." ";
-                    }
+            if ( (ctype_digit($intval1)) && (ctype_digit($intval2)) ) {
+                if ( $intval2 > $intval1 ) {
+                    $html = '';
                     $ismultipleof3 = $ismultipleof5 = false;
+                    for( $n = $intval1; $n <= $intval2; $n++ ) {
+                        if ( $n % 3 === 0 ) {
+                            $ismultipleof3 = true;
+                        }
+                        if ( $n % 5 === 0 ) {
+                            $ismultipleof5 = true;
+                        }
+                        if  ($ismultipleof3 && $ismultipleof5) {
+                            $html .= ' FizzBuzz ';
+                        } elseif ($ismultipleof3 && !$ismultipleof5) {
+                            $html.= ' Fizz ';
+                        } elseif (!$ismultipleof3 && $ismultipleof5) { 
+                            $html .= ' Buzz ';
+                        } else {
+                            $html .= " ".$n." ";
+                        }
+                        $ismultipleof3 = $ismultipleof5 = false;
+                    }
+                    // show result
+                    echo "<p><strong>Result for the range[".$intval1."...".$intval2."]</strong>:</p>";
+                    echo "<p>".$html."</p>";
+                    echo "<hr/>";
+                } else {
+                    $mssg = '<p class="error">The last integer in the range should be higher than the first value.</p>';
                 }
-                // show result
-                echo "<p><strong>Result for the range[".$intval1."...".$intval2."]</strong>:</p>";
-                echo "<p>".$html."</p>";
-                echo "<hr/>";
             } else {
-                $mssg = '<p class="error">The last integer in the range should be higher than the first value.</p>';
+                $mssg = '<p class="error">The value allowed are only a positive integers.</p>';
             }
         } else {
-            $mssg = '<p class="error">The value allowed are only a positive integer.</p>';
+            $mssg = '<p class="error">The value allowed are only a positive integers.</p>';
         }
     } else {
         $mssg = '<p class="error">Please enter a positive integer range.</p>';
