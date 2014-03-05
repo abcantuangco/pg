@@ -1,4 +1,24 @@
 <?php
+// Function to check the multiple
+function checkMultiple($int) 
+{
+    $ismultipleof3 = $ismultipleof5 = false;
+    $result = '';
+    if ( $int % 3 === 0 ) {
+        $result .= 'Fizz';
+        $ismultipleof3 = true;
+    } elseif ( $int % 5 === 0 ) {
+        $result .= 'Buzz';
+        $ismultipleof5 = true;
+    } elseif  ($ismultipleof3 && $ismultipleof5) {
+        $result .= 'FizzBuzz';
+        $ismultipleof3 = $ismultipleof5 = false;
+    } else {
+        $result .= " ".$int." ";
+    }
+    return $result;
+}
+
 // Form Processor
 if ( isset($_POST['submit'] )) 
 {
@@ -7,14 +27,39 @@ if ( isset($_POST['submit'] ))
 
     if ( $intval1 && $intval2 )
     {
-        
-        if ( $intval > 0 ) {
-
+        if ( ($intval1 > 0 ) && ( $intval2 > 0 ) ) {
+            if ( $intval2 > $intval1 ) {
+                $html = '';
+                $ismultipleof3 = $ismultipleof5 = false;
+                for( $n = $intval1; $n <= $intval2; $n++ ) {
+                    if ( $n % 3 === 0 ) {
+                        $ismultipleof3 = true;
+                    }
+                    if ( $n % 5 === 0 ) {
+                        $ismultipleof5 = true;
+                    }
+                    if  ($ismultipleof3 && $ismultipleof5) {
+                        $html .= ' FizzBuzz ';
+                    } elseif ($ismultipleof3 && !$ismultipleof5) {
+                        $html.= ' Fizz ';
+                    } elseif (!$ismultipleof3 && $ismultipleof5) { 
+                        $html .= ' Buzz ';
+                    } else {
+                        $html .= " ".$n." ";
+                    }
+                    $ismultipleof3 = $ismultipleof5 = false;
+                }
+                // show result
+                echo "<p><strong>Result for the range[".$intval1."...".$intval2."]</strong>:</p>";
+                echo "<p>".$html."</p>";
+            } else {
+                $mssg = '<p class="error">The last integer in the range should be higher than the first value.</p>';
+            }
         } else {
-            $mssg = '<p class="error">The value allowed is a positive integer.</p>';
+            $mssg = '<p class="error">The value allowed are only a positive integer.</p>';
         }
     } else {
-        $mssg = '<p class="error">Please enter a positive integer</p>';
+        $mssg = '<p class="error">Please enter a positive integer range.</p>';
     }
 }
 ?>
