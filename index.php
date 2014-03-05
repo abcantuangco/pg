@@ -2,13 +2,16 @@
 // Form Processor
 if ( isset($_POST['submit'] )) 
 {
-    if ( isset($_POST['intval']) )
+    $intval1 = trim($_POST['intval1']);
+    $intval2 = trim($_POST['intval2']);
+
+    if ( $intval1 && $intval2 )
     {
-        $intval = trim($_POST['intval']);
+        
         if ( $intval > 0 ) {
 
         } else {
-            $mssg = '<p class="error">The value allowed is a positive integer</p>';
+            $mssg = '<p class="error">The value allowed is a positive integer.</p>';
         }
     } else {
         $mssg = '<p class="error">Please enter a positive integer</p>';
@@ -33,10 +36,10 @@ if ( isset($_POST['submit'] ))
     echo $mssg;
 ?>
 <form action="<?php echo $PHP_SELF;?>" method="POST">
-    <table>
+    <table width="100%">
         <tr>
-            <td width="50%">Enter a positive integer:</td>
-            <td width="50%"><input type="text" name="intval"/></td>
+            <td width="20%">Enter a positive integer range:</td>
+            <td width="90%">From <input type="text" name="intval1" value="<?php echo $_POST['intval1'] ?>"/> To <input type="text" name="intval2" value="<?php echo $_POST['intval2'] ?>"/></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" name="submit" value="Submit"/></td>
