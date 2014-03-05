@@ -52,6 +52,7 @@ if ( isset($_POST['submit'] ))
                 // show result
                 echo "<p><strong>Result for the range[".$intval1."...".$intval2."]</strong>:</p>";
                 echo "<p>".$html."</p>";
+                echo "<hr/>";
             } else {
                 $mssg = '<p class="error">The last integer in the range should be higher than the first value.</p>';
             }
@@ -80,6 +81,7 @@ if ( isset($_POST['submit'] ))
 <?php 
     echo $mssg;
 ?>
+<h1>Case #1.1</h1>
 <form action="<?php echo $PHP_SELF;?>" method="POST">
     <table width="100%">
         <tr>
