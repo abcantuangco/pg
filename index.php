@@ -1,24 +1,4 @@
 <?php
-// Function to check the multiple
-function checkMultiple($int) 
-{
-    $ismultipleof3 = $ismultipleof5 = false;
-    $result = '';
-    if ( $int % 3 === 0 ) {
-        $result .= 'Fizz';
-        $ismultipleof3 = true;
-    } elseif ( $int % 5 === 0 ) {
-        $result .= 'Buzz';
-        $ismultipleof5 = true;
-    } elseif  ($ismultipleof3 && $ismultipleof5) {
-        $result .= 'FizzBuzz';
-        $ismultipleof3 = $ismultipleof5 = false;
-    } else {
-        $result .= " ".$int." ";
-    }
-    return $result;
-}
-
 // Form Processor
 if ( isset($_POST['submit'] )) 
 {
@@ -78,7 +58,7 @@ if ( isset($_POST['submit'] ))
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Answer 1.1</title>
+    <title>Answer 1.2</title>
     <link rel="stylesheet" href="">
     <style>
         .error {
