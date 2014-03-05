@@ -2,7 +2,7 @@
 // Form Processor
 if ( isset($_POST['submit'] )) 
 {
-    if ( isset($_POST['intval'] ))
+    if ( isset($_POST['intval']) )
     {
         $intval = trim($_POST['intval']);
         if ( $intval > 0 ) {
@@ -32,11 +32,11 @@ if ( isset($_POST['submit'] ))
 <?php 
     echo $mssg;
 ?>
-<form action="<?php echo $PHP_SELF;?>"" method="POST">
+<form action="<?php echo $PHP_SELF;?>" method="POST">
     <table>
         <tr>
             <td width="50%">Enter a positive integer:</td>
-            <td width="50%"><input type="text" name="intvalue"/></td>
+            <td width="50%"><input type="text" name="intval"/></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" name="submit" value="Submit"/></td>
