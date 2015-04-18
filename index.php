@@ -2,49 +2,18 @@
 // Form Processor
 if ( isset($_POST['submit'] )) 
 {
-    $intval1 = trim($_POST['intval1']);
-    $intval2 = trim($_POST['intval2']);
 
-    if ( $intval1 && $intval2 )
-    {
-        if ( ($intval1 > 0 ) && ( $intval2 > 0 ) ) {
-            if ( (ctype_digit($intval1)) && (ctype_digit($intval2)) ) {
-                if ( $intval2 > $intval1 ) {
-                    $html = '';
-                    $ismultipleof3 = $ismultipleof5 = false;
-                    for( $n = $intval1; $n <= $intval2; $n++ ) {
-                        if ( $n % 3 === 0 ) {
-                            $ismultipleof3 = true;
-                        }
-                        if ( $n % 5 === 0 ) {
-                            $ismultipleof5 = true;
-                        }
-                        if  ($ismultipleof3 && $ismultipleof5) {
-                            $html .= ' FizzBuzz ';
-                        } elseif ($ismultipleof3 && !$ismultipleof5) {
-                            $html.= ' Fizz ';
-                        } elseif (!$ismultipleof3 && $ismultipleof5) { 
-                            $html .= ' Buzz ';
-                        } else {
-                            $html .= " ".$n." ";
-                        }
-                        $ismultipleof3 = $ismultipleof5 = false;
-                    }
-                    // show result
-                    echo "<p><strong>Result for the range[".$intval1."...".$intval2."]</strong>:</p>";
-                    echo "<p>".$html."</p>";
-                    echo "<hr/>";
-                } else {
-                    $mssg = '<p class="error">The last integer in the range should be higher than the first value.</p>';
-                }
-            } else {
-                $mssg = '<p class="error">The value allowed are only a positive integers.</p>';
-            }
-        } else {
-            $mssg = '<p class="error">The value allowed are only a positive integers.</p>';
-        }
-    } else {
-        $mssg = '<p class="error">Please enter a positive integer range.</p>';
+    include 'lib/fizzbuzz.php';
+
+    $fizzbuzz = new FizzBuzz;
+
+    $fizzbuzz->setInput(1,trim($_POST['intval1']));
+    $fizzbuzz->setInput(2,trim($_POST['intval2']));
+
+    $filter = $fizzbuzz->filterInputs();
+
+    if ($filter->code == 200) {
+        echo $fizzbuzz->createResponse();
     }
 }
 ?>
@@ -63,7 +32,9 @@ if ( isset($_POST['submit'] ))
 </head>
 <body>
 <?php 
-    echo $mssg;
+    if (@$filter->code != 200) {
+        echo '<p class="error">'.$filter->response.'</p>';
+    }
 ?>
 <h1>Case #1.1</h1>
 <form action="<?php echo $PHP_SELF;?>" method="POST">
