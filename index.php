@@ -3,9 +3,9 @@
 if ( isset($_POST['submit'] )) 
 {
 
-    include 'lib/fizzbuzz.php';
+    include 'lib/fizzbuzzmod.php';
 
-    $fizzbuzz = new FizzBuzz;
+    $fizzbuzz = new FizzBuzzMod;
 
     $fizzbuzz->setInput(1,trim($_POST['intval1']));
     $fizzbuzz->setInput(2,trim($_POST['intval2']));

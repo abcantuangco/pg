@@ -3,10 +3,6 @@
 
         private $input;
 
-        public function __construct() {
-        
-        }
-
         public function setInput($index, $val) {
             $this->input[$index] = $val;
         }
@@ -33,7 +29,7 @@
         }
 
         public function greaterThanFilter() {
-            if ( $this->getInput(1) > $this->getInput(2) )
+            if ( $this->getInput(1) >= $this->getInput(2) )
                 throw new Exception("The second input should be greater than the first input");
         }
 
